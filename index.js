@@ -32,7 +32,7 @@ async function initializeServer() {
         status: 'OK',
         message: 'Smart Inventory API Server',
         timestamp: new Date().toISOString(),
-        routes: ['/api/health', '/api/ai-agent', '/api/ai-analyses', '/api/ai-assistant/health', '/api/assistant/health']
+        routes: ['/api/health', '/api/ai-agent', '/api/assistant/health']
       });
     });
 
