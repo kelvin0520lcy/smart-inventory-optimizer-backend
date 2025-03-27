@@ -1,6 +1,6 @@
 // ESM database connection for PostgreSQL/Supabase
-import pkg from 'pg';
-const { Pool } = pkg;
+import pg from 'pg';
+const { Pool } = pg;
 import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import fs from 'fs';
@@ -61,8 +61,14 @@ export async function initDb() {
     }
     
     // Initialize drizzle with the schema
-    const { drizzle } = await import('drizzle-orm/node-postgres');
-    db = drizzle(pool, { schema: schemaModule });
+    try {
+      const { drizzle } = await import('drizzle-orm/node-postgres');
+      db = drizzle(pool, { schema: schemaModule });
+      console.log('Drizzle ORM initialized successfully');
+    } catch (err) {
+      console.log('Failed to initialize Drizzle ORM, using raw connection:', err.message);
+      db = pool;
+    }
     
     console.log('Database initialized successfully');
     return db;
