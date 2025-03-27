@@ -1,8 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import { initDb } from './db-pg.js';
-import routes from './routes/index.js';
-import { startBackgroundService } from './services/background-service.js';
 import dotenv from 'dotenv';
 
 // Load environment variables
@@ -20,11 +17,29 @@ async function initializeServer() {
   try {
     // Initialize database
     console.log('Initializing database...');
-    await initDb();
-    console.log('Database initialized successfully');
+    let initDb;
+    try {
+      const dbModule = await import('./db-pg.js');
+      initDb = dbModule.initDb;
+      await initDb();
+      console.log('Database initialized successfully');
+    } catch (dbError) {
+      console.warn('Failed to initialize database:', dbError);
+      console.log('Continuing with limited functionality...');
+    }
 
     // Register routes
-    app.use('/api', routes);
+    try {
+      const routes = (await import('./routes/index.js')).default;
+      app.use('/api', routes);
+      console.log('Routes registered successfully');
+    } catch (routesError) {
+      console.warn('Failed to load routes:', routesError);
+      // Setup a basic routes if full routes fail to load
+      app.use('/api/health', (req, res) => {
+        res.json({ status: 'OK', timestamp: new Date().toISOString() });
+      });
+    }
     
     // Root path handler
     app.get('/', (req, res) => {
@@ -37,8 +52,13 @@ async function initializeServer() {
     });
 
     // Start background service
-    console.log('Starting background service...');
-    startBackgroundService();
+    try {
+      console.log('Starting background service...');
+      const { startBackgroundService } = await import('./services/background-service.js');
+      startBackgroundService();
+    } catch (serviceError) {
+      console.warn('Failed to start background service:', serviceError);
+    }
 
     // Start server
     app.listen(PORT, '0.0.0.0', () => {
