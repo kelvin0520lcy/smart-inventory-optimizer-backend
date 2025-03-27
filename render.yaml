@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: smart-io-api
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: postgresql://postgres:leecyaqu110205@db.gxjxbccpzuuqaxzzmxjf.supabase.co:5432/postgres
+      - key: DB_HOST
+        value: db.gxjxbccpzuuqaxzzmxjf.supabase.co
+      - key: DB_PORT
+        value: 5432
+      - key: DB_USER
+        value: postgres
+      - key: DB_PASSWORD
+        value: leecyaqu110205
+      - key: DB_NAME
+        value: postgres
+      - key: USE_SSL
+        value: true
+      - key: CORS_ORIGIN
+        value: https://smart-io.online
+      - key: API_URL
+        value: https://api.smart-io.online
+      - key: CLIENT_URL
+        value: https://smart-io.online
+
+databases:
+  - name: smart-io-db
+    plan: free
+    ipAllowList: [] 

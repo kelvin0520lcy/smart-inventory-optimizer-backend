@@ -1,0 +1,62 @@
+functionsDirectory = "C:\\Users\\leech\\Documents\\SmartInventoryOptimizer-1\\server\\netlify\\functions"
+functionsDirectoryOrigin = "config-v1"
+redirectsOrigin = "config"
+plugins = []
+headers = []
+
+[build]
+publish = "C:\\Users\\leech\\Documents\\SmartInventoryOptimizer-1\\server\\public"
+publishOrigin = "config"
+commandOrigin = "config"
+base = "C:\\Users\\leech\\Documents\\SmartInventoryOptimizer-1\\server"
+command = "npm install && npm run build:windows"
+functions = "C:\\Users\\leech\\Documents\\SmartInventoryOptimizer-1\\server\\netlify\\functions"
+
+[build.environment]
+NODE_VERSION = "18"
+CORS_ORIGIN = "https://smart-io.online"
+API_URL = "https://api.smart-io.online/api"
+CLIENT_URL = "https://smart-io.online"
+SHOPIFY_REDIRECT_URI = "https://api.smart-io.online/api/auth/callback"
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[functions]
+
+[functions."*"]
+external_node_modules = ["express", "pg"]
+node_bundler = "esbuild"
+
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/api/:splat"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/api/:splat"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

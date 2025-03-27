@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "name": "api-smart-io",
+  "builds": [
+    {
+      "src": "dist/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/index.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "DATABASE_URL": "postgresql://postgres:leecyaqu110205@db.gxjxbccpzuuqaxzzmxjf.supabase.co:5432/postgres",
+    "DB_HOST": "db.gxjxbccpzuuqaxzzmxjf.supabase.co",
+    "DB_PORT": "5432",
+    "DB_USER": "postgres",
+    "DB_PASSWORD": "leecyaqu110205",
+    "DB_NAME": "postgres",
+    "USE_SSL": "true",
+    "CORS_ORIGIN": "https://smart-io.online",
+    "API_URL": "https://api.smart-io.online",
+    "CLIENT_URL": "https://smart-io.online",
+    "SHOPIFY_REDIRECT_URI": "https://api.smart-io.online/api/auth/callback"
+  }
+} 
