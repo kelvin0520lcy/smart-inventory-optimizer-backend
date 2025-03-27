@@ -51,15 +51,6 @@ async function initializeServer() {
       });
     });
 
-    // Start background service
-    try {
-      console.log('Starting background service...');
-      const { startBackgroundService } = await import('./services/background-service.js');
-      startBackgroundService();
-    } catch (serviceError) {
-      console.warn('Failed to start background service:', serviceError);
-    }
-
     // Start server
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server running on http://0.0.0.0:${PORT}`);
