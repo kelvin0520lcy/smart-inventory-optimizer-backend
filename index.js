@@ -36,32 +36,9 @@ async function initializeServer() {
       });
     });
 
-    // Start background AI service
-    console.log('Starting background AI service...');
+    // Start background service
+    console.log('Starting background service...');
     startBackgroundService();
-
-    // Add a test endpoint to manually trigger the AI analysis
-    app.get('/api/ai-analysis/run', async (req, res) => {
-      try {
-        console.log('Manually triggering AI analysis run...');
-        const { runBackgroundAnalysis } = await import('./services/background-ai-agent.js');
-        const results = await runBackgroundAnalysis();
-        res.json({
-          status: 'success',
-          message: 'AI analysis completed successfully',
-          analysisCount: results.length,
-          timestamp: new Date().toISOString()
-        });
-      } catch (error) {
-        console.error('Error running manual AI analysis:', error);
-        res.status(500).json({
-          status: 'error',
-          message: 'Failed to run AI analysis',
-          error: error.message || 'Unknown error',
-          timestamp: new Date().toISOString()
-        });
-      }
-    });
 
     // Start server
     app.listen(PORT, '0.0.0.0', () => {

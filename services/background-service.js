@@ -1,43 +1,22 @@
-import { runBackgroundAnalysis } from './background-ai-agent.js';
-
 let backgroundInterval;
 const SIX_HOURS = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
 
 export function startBackgroundService() {
-  console.log('Starting background AI service...');
+  console.log('Starting background service...');
   
-  // Run immediately on startup
-  runInitialAnalysis();
-  
-  // Then set interval for regular runs
+  // Set interval for regular background tasks
   backgroundInterval = setInterval(() => {
-    console.log('Running scheduled background AI analysis...');
-    runBackgroundAnalysis()
-      .then(() => {
-        console.log('Scheduled background AI analysis completed successfully');
-      })
-      .catch((error) => {
-        console.error('Error in scheduled background AI analysis:', error);
-      });
+    console.log('Running scheduled background tasks...');
+    // Background tasks can be added here if needed
+    console.log('Scheduled background tasks completed');
   }, SIX_HOURS);
   
-  console.log(`Background AI service scheduled to run every ${SIX_HOURS / (60 * 60 * 1000)} hours`);
-}
-
-function runInitialAnalysis() {
-  console.log('Running initial background AI analysis...');
-  runBackgroundAnalysis()
-    .then(() => {
-      console.log('Initial background AI analysis completed successfully');
-    })
-    .catch((error) => {
-      console.error('Error in initial background AI analysis:', error);
-    });
+  console.log(`Background service scheduled to run every ${SIX_HOURS / (60 * 60 * 1000)} hours`);
 }
 
 export function stopBackgroundService() {
   if (backgroundInterval) {
     clearInterval(backgroundInterval);
-    console.log('Background AI service stopped');
+    console.log('Background service stopped');
   }
 } 
