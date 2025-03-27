@@ -16,8 +16,6 @@
     "@types/express-session": "^1.17.10",
     "@types/node": "^20.11.20",
     "@types/pg": "^8.11.11",
-    "pg": "^8.14.1",
-    "postgres": "^3.4.5",
     "serverless-http": "^3.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
@@ -31,7 +29,9 @@
     "iconv-lite": "^0.6.3",
     "memorystore": "^1.6.7",
     "node-fetch": "^3.3.2",
-    "openai": "^4.24.1"
+    "openai": "^4.24.1",
+    "pg": "^8.14.1",
+    "postgres": "^3.4.5"
   },
   "engines": {
     "node": ">=18.0.0"
