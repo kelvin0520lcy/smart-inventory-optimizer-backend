@@ -1,0 +1,61 @@
+services:
+  - type: web
+    name: smart-inventory-api
+    env: node
+    region: singapore
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: DB_HOST
+        value: db.gxjxbccpzuuqaxzzmxjf.supabase.co
+      - key: DB_PORT
+        value: 5432
+      - key: DB_USER
+        value: postgres
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: postgres
+      - key: USE_SSL
+        value: true
+      - key: CORS_ORIGIN
+        value: https://smart-io.online
+      - key: API_URL
+        value: https://api.smart-io.online
+      - key: CLIENT_URL
+        value: https://smart-io.online
+      - key: SESSION_SECRET
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: COOKIE_SECRET
+        sync: false
+      - key: SHOPIFY_API_VERSION
+        value: 2024-01
+      - key: SHOPIFY_CLIENT_ID
+        value: 35e3c2e2087ba604b7c4d96a8ffba70b
+      - key: SHOPIFY_CLIENT_SECRET
+        value: 92f249213e0ca968433d8d29d82a05ca
+      - key: SHOPIFY_REDIRECT_URI
+        value: https://api.smart-io.online/api/auth/callback
+      - key: SHOPIFY_SCOPES
+        value: read_products,write_products,read_inventory,write_inventory
+      - key: ENABLE_POLLING
+        value: true
+      - key: POLLING_INTERVAL
+        value: 5000
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        value: https://gxjxbccpzuuqaxzzmxjf.supabase.co
+      - key: SUPABASE_KEY
+        sync: false 

@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/index.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.ts"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "DATABASE_URL": "postgresql://postgres:leecyaqu110205@db.gxjxbccpzuuqaxzzmxjf.supabase.co:5432/postgres",
+    "DB_HOST": "db.gxjxbccpzuuqaxzzmxjf.supabase.co", 
+    "DB_PORT": "5432",
+    "DB_USER": "postgres",
+    "DB_PASSWORD": "leecyaqu110205",
+    "DB_NAME": "postgres",
+    "USE_SSL": "true"
+  }
+} 

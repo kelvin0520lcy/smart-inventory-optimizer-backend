@@ -1,0 +1,41 @@
+{
+  "name": "smart-inventory-optimizer-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node index.js",
+    "build": "node build.js",
+    "start": "node -r dotenv/config index.js",
+    "start:prod": "NODE_ENV=production node -r dotenv/config index.js",
+    "postinstall": "npm run build"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.6.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/express-session": "^1.17.10",
+    "@types/node": "^20.11.20",
+    "@types/pg": "^8.11.11",
+    "serverless-http": "^3.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.30.6",
+    "express": "^4.21.2",
+    "express-session": "^1.17.3",
+    "iconv-lite": "^0.6.3",
+    "memorystore": "^1.6.7",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.24.1",
+    "pg": "^8.14.1",
+    "postgres": "^3.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
