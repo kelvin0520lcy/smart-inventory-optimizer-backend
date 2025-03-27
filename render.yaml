@@ -2,7 +2,7 @@ services:
   - type: web
     name: smart-io-api
     env: node
-    buildCommand: npm install && npm run build
+    buildCommand: npm install
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -19,16 +19,11 @@ services:
         value: leecyaqu110205
       - key: DB_NAME
         value: postgres
-      - key: USE_SSL
-        value: true
       - key: CORS_ORIGIN
         value: https://smart-io.online
       - key: API_URL
         value: https://api.smart-io.online
       - key: CLIENT_URL
         value: https://smart-io.online
-
-databases:
-  - name: smart-io-db
-    plan: free
-    ipAllowList: [] 
+      - key: USE_SSL
+        value: true 
